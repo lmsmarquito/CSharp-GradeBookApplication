@@ -1,6 +1,7 @@
 ﻿using GradeBook.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -26,14 +27,23 @@ namespace GradeBook.GradeBooks
             if (Students.Count < 5)
                 throw new InvalidOperationException("Minimun 5 students");
 
-            int average = (int)(Students.Count / count);
-            if(average <= 0.2)
+            double average = count / Students.Count;
+            //if(average <= 0.2)
+            //    return 'A';
+            //else if (average > 0.2 && average <= 0.4)
+            //    return 'B';
+            //else if (average > 0.4 && average <= 0.6)
+            //    return 'C';
+            //else if (average > 0.6 && average <= 0.8)
+            //    return 'D';
+
+            if (grades[(int)Math.Ceiling(Students.Count * 0.2) - 1] <= averageGrade)
                 return 'A';
-            else if (average > 0.2 && average <= 0.4)
+            else if (grades[(int)Math.Ceiling(Students.Count * 0.4) - 1] <= averageGrade)
                 return 'B';
-            else if (average > 0.4 && average <= 0.6)
+            else if (grades[(int)Math.Ceiling(Students.Count * 0.6) - 1] <= averageGrade)
                 return 'C';
-            else if (average > 0.6 && average <= 0.8)
+            else if (grades[(int)Math.Ceiling(Students.Count * 0.8) - 1] <= averageGrade)
                 return 'D';
 
             return letter;
